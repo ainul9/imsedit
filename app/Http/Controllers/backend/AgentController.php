@@ -36,27 +36,13 @@ public function AgentAdd($usersID, $agentName)
     $agents = Agent::all();
     
     return view('backend.agent.create_agent', compact('user','agents'));
-
-
-
-    // $agent = Agent::all();
-
-    // $list = DB::table('users')
-    // ->join('agent', 'users.id', '=', 'agent.usersID')
-    // ->where('role', '=', 3)
-    // ->select('agent.usersID','users.id', 'users.name')
-    // ->get();
-
-    // return view('backend.agent.create_agent', compact('list', 'agent'));
-// $all = DB::table('agent')->get();
-// return view('backend.agent.create_agent',compact('all'));
 }
 
 
 
-public function AgentInsert(Request $request)
+public function AgentInsert(Request $request, $usersID)
 {
-    $user = User::find(2);
+    $user = User::find($usersID);
     $data = [
         'usersID' => $user->id,
         'agentName' => $user->name,
@@ -73,15 +59,24 @@ public function AgentInsert(Request $request)
     $insert = DB::table('agent')->insert($data);
     
     if ($insert) {
-        return redirect()->route('agent.index')->with('success', 'Agent created successfully!');
+        return redirect()->route('backend.agent.show_details')->with('success', 'Agent details added successfully!');
     } else {
         $notification = [
             'messege' => 'Error creating agent',
             'alert-type' => 'error'
         ];
-        return redirect()->route('agent.index')->with($notification);
+        return redirect()->route('backend.agent.show_details')->with($notification);
     }
 }
+
+
+public function AgentShow(Request $request, $usersID)
+    {
+        $list = DB::table('agent')->get();
+
+        return view('backend.agent.show_details', compact('list'));
+       
+    }
     
 
 //     public function AgentInsert(Request $request)

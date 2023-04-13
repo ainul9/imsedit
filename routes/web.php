@@ -38,6 +38,7 @@ Route::get('/delete_user/{id}', [App\Http\Controllers\backend\UsermanagementCont
 Route::get('list_agent', [App\Http\Controllers\backend\AgentController::class,'AgentList'])->name('agent.index');
 Route::get('/add_agent/{usersID}/{agentName}',[App\Http\Controllers\backend\AgentController::class,'AgentAdd'])->name('agentadd');
 Route::post('/insert_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentInsert']);
+Route::get('/show_details/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentShow']);
 Route::get('/edit_agent/{agentID}', [App\Http\Controllers\backend\AgentController::class,'AgentEdit']);
 Route::post('/update_agent/{agentID}', [App\Http\Controllers\backend\AgentController::class,'AgentUpdate']);
 Route::get('/delete_agent/{agentID}', [App\Http\Controllers\backend\AgentController::class,'AgentDelete']);
