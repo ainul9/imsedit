@@ -12,8 +12,6 @@ class Agent extends Model
     protected $table = 'agent';
 
     protected $fillable = [
-        'usersID',
-        'agentName',
         'agentCat',
         'registrationNum',
         'contact',

@@ -52,42 +52,72 @@ public function AgentAdd($usersID, $agentName)
 // return view('backend.agent.create_agent',compact('all'));
 }
 
+
+
+public function AgentInsert(Request $request)
+{
+    $user = User::find(2);
+    $data = [
+        'usersID' => $user->id,
+        'agentName' => $user->name,
+        'agentCat' => $request->agentCat,
+        'registrationNum' => $request->registrationNum,
+        'contact' => $request->contact,
+        'address' => $request->address,
+        'city' => $request->city,
+        'postcode' => $request->postcode,
+        'state' => $request->state,
+        'country' => $request->country,
+        'remarks' => $request->remarks,
+    ];
+    $insert = DB::table('agent')->insert($data);
+    
+    if ($insert) {
+        return redirect()->route('agent.index')->with('success', 'Agent created successfully!');
+    } else {
+        $notification = [
+            'messege' => 'Error creating agent',
+            'alert-type' => 'error'
+        ];
+        return redirect()->route('agent.index')->with($notification);
+    }
+}
     
 
-    public function AgentInsert(Request $request)
-    {
-$user = User::find($request->id);
-$data = array();
-// $data['usersID'] = $user->id; 
-// $data['agentName'] = $user->name;   
-$data['agentCat'] = $request->agentCat;
-$data['registrationNum'] = $request->registrationNum;
-$data['contact'] = $request->contact;
-$data['address'] = $request->address;
-$data['city'] = $request->city;
-$data['postcode'] = $request->postcode;
-$data['state'] = $request->state;
-$data['country'] = $request->country;
-$data['remarks'] = $request->remarks;
-$insert = DB::table('agent')->insert($data);
+//     public function AgentInsert(Request $request)
+//     {
+
+
+// $user = User::find($request->id);
+// $data = [];
+// $data['agentCat'] = $request->agentCat;
+// $data['registrationNum'] = $request->registrationNum;
+// $data['contact'] = $request->contact;
+// $data['address'] = $request->address;
+// $data['city'] = $request->city;
+// $data['postcode'] = $request->postcode;
+// $data['state'] = $request->state;
+// $data['country'] = $request->country;
+// $data['remarks'] = $request->remarks;
+// $insert = DB::table('agent')->insert($data);
        
-if ($insert) 
-{
+// if ($usersID) 
+// {
    
-                return Redirect()->route('agent.index')->with('success','Agent created successfully!');
+//                 return Redirect()->route('agent.index')->with('success','Agent created successfully!');
                  
-        }
-else
-        {
-        $notification=array
-        (
-        'messege'=>'error ',
-        'alert-type'=>'error'
-        );
-        return Redirect()->route('agent.index')->with($notification);
-        }
+//         }
+// else
+//         {
+//         $notification=array
+//         (
+//         'messege'=>'error ',
+//         'alert-type'=>'error'
+//         );
+//         return Redirect()->route('agent.index')->with($notification);
+//         }
            
-}
+// }
 
       public function AgentEdit ($id)
     {
