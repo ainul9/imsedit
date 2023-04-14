@@ -11,14 +11,15 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Agent</h3>
+                <h3 class="card-title">Add Agent Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" action="{{ URL::to('/insert_agent/'.$user->id) }}" method="post" enctype="multipart/form-data">
               	@csrf 
                 <div class="card-body">
-
+                  
+                  
 
 <div class="form-group">
   <label for="usersID">Agent ID</label>

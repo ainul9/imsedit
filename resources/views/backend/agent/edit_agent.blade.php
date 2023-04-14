@@ -11,38 +11,37 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Agent's Task</h3>
+                <h3 class="card-title">Edit Agent's Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{URL::to('/update_agent/'.$edit->id)}}" method="post" enctype="multipart/form-data">
+              <form role="form" action="{{URL::to('/update_agent/'.$edit->id)}}" method="POST" enctype="multipart/form-data">
               	@csrf
                 <div class="card-body">
 
-                  
 <div class="form-group">
-<label for="agentName">Agent Name</label>
-<input type="text" name="agentName" value="{{$edit->agentName}}"  class="form-control @error('slug') is-invalid @enderror"
- id="agentName" placeholder="Enter Agent Name">
-
-@error('slug')
+<label for="usersID">Agent ID</label>
+<input type="text" name="usersID" value="{{$edit->usersID}}" class="form-control @error('slug') is-invalid @enderror"
+id="usersID" readonly>
+                    
+@error('usersID')
 <span class="invalid-feedback" role="alert">
 <strong>{{ $message }}</strong>
 </span>
 @enderror
 </div>
-
+                                 
 <div class="form-group">
-  <label for="usersID">User ID</label>
-  <input type="text" name="usersID" value="{{$edit->usersID}}" class="form-control @error('slug') is-invalid @enderror"
-   id="usersID" placeholder="Enter User ID">
-  
-  @error('slug')
-  <span class="invalid-feedback" role="alert">
-  <strong>{{ $message }}</strong>
-  </span>
-  @enderror
-  </div>
+<label for="agentName">Agent Name</label>
+<input type="text" name="agentName" value="{{$edit->agentName}}"  class="form-control @error('slug') is-invalid @enderror"
+ id="agentName" readonly>
+
+@error('agentName')
+<span class="invalid-feedback" role="alert">
+<strong>{{ $message }}</strong>
+</span>
+@enderror
+</div>
 
 <div class="form-group">
    <label for="agentCat">Agent Category</label><br>
@@ -52,7 +51,7 @@
      <option value="Fulfillment Agent">Fulfillment Agent</option>
    </select>
   
-  @error('slug')
+  @error('agentCat')
   <span class="invalid-feedback" role="alert">
   <strong>{{ $message }}</strong>
   </span>
@@ -64,7 +63,7 @@
     <input type="text" name="registrationNum" value="{{$edit->registrationNum}}" class="form-control @error('slug') is-invalid @enderror"
      id="registrationNum" placeholder="Enter Registration Number ">
     
-    @error('slug')
+    @error('registrationNum')
     <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
     </span>
@@ -76,7 +75,7 @@
       <input type="text" name="contact" value="{{$edit->contact}}" class="form-control @error('slug') is-invalid @enderror"
        id="contact" placeholder="Enter Contact ">
       
-      @error('slug')
+      @error('contact')
       <span class="invalid-feedback" role="alert">
       <strong>{{ $message }}</strong>
       </span>
@@ -88,7 +87,7 @@
         <input type="text" name="address" value="{{$edit->address}}" class="form-control @error('slug') is-invalid @enderror"
          id="contact" placeholder="Enter Address">
         
-        @error('slug')
+        @error('address')
         <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>
         </span>
@@ -100,7 +99,7 @@
           <input type="text" name="city" value="{{$edit->city}}"  class="form-control @error('slug') is-invalid @enderror"
            id="city" placeholder="Enter City">
           
-          @error('slug')
+          @error('city')
           <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
           </span>
@@ -112,7 +111,7 @@
             <input type="text" name="postcode" value="{{$edit->postcode}}" class="form-control @error('slug') is-invalid @enderror"
              id="postcode" placeholder="Enter Postcode">
             
-            @error('slug')
+            @error('postcode')
             <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
             </span>
@@ -125,7 +124,7 @@
           <input type="text" name="state" value="{{$edit->state}}" class="form-control @error('slug') is-invalid @enderror"
            id="state" placeholder="Enter State">
           
-          @error('slug')
+          @error('state')
           <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
           </span>
@@ -137,7 +136,7 @@
             <input type="text" name="country"  value="{{$edit->country}}" class="form-control @error('slug') is-invalid @enderror"
              id="country" placeholder="Enter Country">
             
-            @error('slug')
+            @error('country')
             <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
             </span>
@@ -149,7 +148,7 @@
               <input type="text" name="remarks" value="{{$edit->remarks}}" class="form-control @error('slug') is-invalid @enderror"
                id="remarks" placeholder="Enter Remarks">
               
-              @error('slug')
+              @error('remarks')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
               </span>

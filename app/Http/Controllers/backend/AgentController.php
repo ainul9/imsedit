@@ -32,10 +32,21 @@ class AgentController extends Controller
 
 public function AgentAdd($usersID, $agentName)
 {
-    $user = User::where('id', $usersID)->where('name', $agentName)->first();
-    $agents = Agent::all();
+    // $user = User::where('id', $usersID)->where('name', $agentName)->first();
+    // $agents = Agent::all();
     
-    return view('backend.agent.create_agent', compact('user','agents'));
+    // return view('backend.agent.create_agent', compact('user','agents'));
+    $list = DB::table('agent')->get();
+    $user = User::where('id', $usersID)->where('name', $agentName)->first();
+    $agents = Agent::where('usersID', $usersID)->get();
+    
+    if($agents->isEmpty()){
+        return view('backend.agent.create_agent', compact('user','agents'));
+    }else{
+        $notification = session('success'); // Get the success message, if any
+        return view('backend.agent.show_details', compact('user', 'agents', 'list'))->with('success', 'Details for this agent have been added successfully');
+
+    }
 }
 
 
@@ -59,7 +70,8 @@ public function AgentInsert(Request $request, $usersID)
     $insert = DB::table('agent')->insert($data);
     
     if ($insert) {
-        return redirect()->route('backend.agent.show_details')->with('success', 'Agent details added successfully!');
+        return redirect()->route('backend.agent.show_details', ['usersID' => $usersID])->with('success', 'Agent details added successfully!');
+        // return redirect()->route('backend.agent.show_details')->with('success', 'Agent details added successfully!');
     } else {
         $notification = [
             'messege' => 'Error creating agent',
@@ -72,9 +84,12 @@ public function AgentInsert(Request $request, $usersID)
 
 public function AgentShow(Request $request, $usersID)
     {
-        $list = DB::table('agent')->get();
+        
+        // $list = DB::table('agent')->get();
+        $list = Agent::where('usersID', $usersID)->get();
+        $user = User::where('id', $usersID)->first();
 
-        return view('backend.agent.show_details', compact('list'));
+        return view('backend.agent.show_details', compact('list', 'user'));
        
     }
     
@@ -114,11 +129,11 @@ public function AgentShow(Request $request, $usersID)
            
 // }
 
-      public function AgentEdit ($id)
+    public function AgentEdit ($id)
     {
         $edit=DB::table('agent')
-             ->where('id',$id)
-             ->first();
+            ->where('id',$id)
+            ->first();
         return view('backend.agent.edit_agent', compact('edit'));     
     }
 
@@ -127,8 +142,8 @@ public function AgentShow(Request $request, $usersID)
       
         DB::table('agent')->where('id', $id)->first();        
         $data = array();
-        $data['agentName'] = $request->agentName;
         $data['usersID'] = $request->usersID;
+        $data['agentName'] = $request->agentName;
         $data['agentCat'] = $request->agentCat;
         $data['registrationNum'] = $request->registrationNum;
         $data['contact'] = $request->contact;
@@ -143,7 +158,7 @@ public function AgentShow(Request $request, $usersID)
         if ($update) 
     {
             
-            return Redirect()->route('agent.index')->with('success','Agent Updated successfully!');                     
+            return Redirect()->route('backend.agent.show_details',['id' => $id])->with('success','Agent Updated successfully!');                     
     }
         else
     {
@@ -152,7 +167,7 @@ public function AgentShow(Request $request, $usersID)
         'messege'=>'error ',
         'alert-type'=>'error'
         );
-        return Redirect()->route('agent.index')->with($notification);
+        return Redirect()->route('backend.agent.show_details', ['id' => $id])->with($notification);
     }
      
     }
