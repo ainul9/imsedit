@@ -54,7 +54,8 @@
 
 
 <td>
-<a href="{{ URL::to('/edit_agent/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
+    <a href="{{ URL::to('/list_task/'.$row->id) }}" class="btn btn-sm btn-primary">List Task</a>
+<a href="{{ URL::to('/edit_agent/'.$row->usersID) }}" class="btn btn-sm btn-info">Edit</a>
 @if (Auth::user()->role == 1 )
 <a href="{{ URL::to('delete_agent/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
 @endif

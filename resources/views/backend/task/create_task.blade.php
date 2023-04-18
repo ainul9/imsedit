@@ -15,13 +15,18 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{URL::to('/insert_task')}}" method="post" enctype="multipart/form-data">
+              <form role="form" action="{{ URL::to('/insert_task/'.$agent->id) }}" method="post" enctype="multipart/form-data">
               	@csrf
-                <div class="card-body">   
+                <div class="card-body"> 
 
 <div class="form-group">
-  <label for="agentID">Agent ID</label>
+  <label for="agentID">Task ID</label>
   <input type="text" name="agentID" class="form-control" id="agentID" value="{{ $agent->id }}" readonly>
+</div>
+
+<div class="form-group">
+  <label for="agentID">Agent Name</label>
+  <input type="text" name="agentID" class="form-control" id="agentName" value="{{ $agent->agentName }}" readonly>
 </div>
 
 

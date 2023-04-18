@@ -23,11 +23,17 @@ class Agent extends Model
         'remarks'
     ];
 
-    protected $guarded = ['userID', 'agentName'];
+    protected $guarded = ['usersID', 'agentName'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'usersID');
     }
+
+    public function task()
+    {
+        return $this->hasMany(Task::class, 'agentID');
+    }
+
 
 }

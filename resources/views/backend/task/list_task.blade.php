@@ -8,13 +8,19 @@
 <div class="card-header info">
 <h3 class="card-title">Task List</h3>
 </div>
-            <!-- /.card-header -->
+
+
+          
  <div class="card-body">
+
+<a href="{{ URL::to('/add_task/'.$agent->id) }}" class="btn btn-sm btn-primary" style="right:0">Add Task</a>
+            <!-- /.card-header -->
+
 <table id="example1" class="table table-bordered table-striped">
 <thead>
 <tr>
 <th>Task ID</th>
-<th>Agent ID</th>
+<th>Agent Name</th>
 <th>Product ID</th>               
 <th>Product Name</th>  
 <th>Quantity</th>
@@ -32,8 +38,9 @@
 <tbody>
 @foreach($list as $row)
 <tr>
+{{-- <td>{{ $row->agentID }}</td> --}}
 <td>{{ $row->id }}</td>
-<td>{{ $row->agentID }}</td>
+<td>{{ $row->agentName }}</td>
 <td>{{ $row->productID }}</td>
 <td> {{ $row->ProductName }} </td>
 <td>{{ $row->quantity }}</td>

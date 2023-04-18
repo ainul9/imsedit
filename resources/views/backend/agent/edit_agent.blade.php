@@ -15,7 +15,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{URL::to('/update_agent/'.$edit->id)}}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{URL::to('/update_agent/'.$edit->usersID)}}" method="POST" enctype="multipart/form-data">
               	@csrf
                 <div class="card-body">
 

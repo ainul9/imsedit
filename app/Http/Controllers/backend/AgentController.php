@@ -36,15 +36,15 @@ public function AgentAdd($usersID, $agentName)
     // $agents = Agent::all();
     
     // return view('backend.agent.create_agent', compact('user','agents'));
-    $list = DB::table('agent')->get();
+    $list = DB::table('agent')->where('usersID', $usersID)->get();
     $user = User::where('id', $usersID)->where('name', $agentName)->first();
-    $agents = Agent::where('usersID', $usersID)->get();
+    // $agents = Agent::where('usersID', $usersID)->get();
     
-    if($agents->isEmpty()){
-        return view('backend.agent.create_agent', compact('user','agents'));
+    if($list->isEmpty()){
+        return view('backend.agent.create_agent', compact('user','list'));
     }else{
         $notification = session('success'); // Get the success message, if any
-        return view('backend.agent.show_details', compact('user', 'agents', 'list'))->with('success', 'Details for this agent have been added successfully');
+        return view('backend.agent.show_details', compact('user', 'list'))->with('success', 'Details for this agent have been added successfully');
 
     }
 }
@@ -92,7 +92,7 @@ public function AgentShow(Request $request, $usersID)
         return view('backend.agent.show_details', compact('list', 'user'));
        
     }
-    
+     
 
 //     public function AgentInsert(Request $request)
 //     {
@@ -129,18 +129,18 @@ public function AgentShow(Request $request, $usersID)
            
 // }
 
-    public function AgentEdit ($id)
+    public function AgentEdit ($usersID)
     {
         $edit=DB::table('agent')
-            ->where('id',$id)
+            ->where('usersID',$usersID)
             ->first();
         return view('backend.agent.edit_agent', compact('edit'));     
     }
 
-        public function AgentUpdate(Request $request,$id)
+        public function AgentUpdate(Request $request,$usersID)
     {
-      
-        DB::table('agent')->where('id', $id)->first();        
+        $list = Agent::where('usersID', $usersID)->get();
+        DB::table('agent')->where('usersID', $usersID)->first();        
         $data = array();
         $data['usersID'] = $request->usersID;
         $data['agentName'] = $request->agentName;
@@ -153,13 +153,21 @@ public function AgentShow(Request $request, $usersID)
         $data['state'] = $request->state;
         $data['country'] = $request->country;
         $data['remarks'] = $request->remarks;
-        $update = DB::table('agent')->where('id', $id)->update($data);
+        $update = DB::table('agent')->where('usersID', $usersID)->update($data);
 
         if ($update) 
     {
-            
-            return Redirect()->route('backend.agent.show_details',['id' => $id])->with('success','Agent Updated successfully!');                     
-    }
+        
+            $list = Agent::where('usersID', $usersID)->get(); 
+            $notification = [
+                'messege' => 'Agent updated successfully!',
+                'alert-type' => 'success'
+            ];
+            return view('backend.agent.show_details', compact('list'))->with($notification);
+            // return redirect()->route('backend.agent.show_details',[$usersID => 'usersID'])->with('success','Agent Updated successfully!');
+            // return view('backend.agent.show_details', compact('list'));                     
+       
+        }   
         else
     {
         $notification=array
@@ -167,15 +175,15 @@ public function AgentShow(Request $request, $usersID)
         'messege'=>'error ',
         'alert-type'=>'error'
         );
-        return Redirect()->route('backend.agent.show_details', ['id' => $id])->with($notification);
+        return redirect()->route('backend.agent.show_details', [$usersID => 'usersID'])->with($notification);
     }
      
     }
 
-public function AgentDelete ($id)
+public function AgentDelete ($usersID)
     {
     
-        $delete = DB::table('agent')->where('id', $id)->delete();
+        $delete = DB::table('agent')->where('usersID', $usersID)->delete();
         if ($delete)
                             {
                             $notification=array(

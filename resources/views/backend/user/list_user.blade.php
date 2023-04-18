@@ -48,8 +48,7 @@ if($row->role==3)
 <td>
 <a href="{{ URL::to('/edit_user/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
 <a href="{{ URL::to('delete_user/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
-<a href="{{ URL::to('/add_agent'.$row->id) }}" class="nav-link">Add Agent Details</a>
-<a href="{{ URL::to('backend.agent.show_details'.$row->id) }}" class="nav-link">View Details</a>
+
 </td>
 </tr>
 @endforeach

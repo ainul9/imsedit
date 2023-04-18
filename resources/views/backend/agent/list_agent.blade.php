@@ -26,10 +26,10 @@
 <td>{{ $row->email }}</td>
 
 <td>
-<a href="{{ URL::to('/edit_agent/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
+{{-- <a href="{{ URL::to('/edit_agent/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a> --}}
+<a href="{{ URL::to('/add_agent/'.$row->id.'/'.$row->name) }}" class="btn btn-sm btn-primary" id="addDetails" class="middle-align">Add Details</a>
+<a href="{{ URL::to('/show_details/'.$row->id) }}" class="btn btn-sm btn-info" id="showDetails" class="middle-align">View Details</a>
 <a href="{{ URL::to('delete_agent/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
-<a href="{{ URL::to('/add_agent/'.$row->id.'/'.$row->name) }}" class="nav-link">Add Details</a>
-<a href="{{ URL::to('/show_details/'.$row->id) }}" class="nav-link">View Details</a>
 </td>
 </tr>
 @endforeach

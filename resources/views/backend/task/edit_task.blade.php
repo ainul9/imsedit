@@ -20,6 +20,20 @@
                 <div class="card-body">
 
 @if (Auth::user()->role == 1 )
+
+<div class="form-group">
+  <label for="agentName">Agent ID</label>
+  <input type="text" name="agentName" value="{{$edit->agentName}}"  class="form-control @error('title') is-invalid @enderror"
+   id="agentID" readonly>
+  
+  @error('agentName')
+  <span class="invalid-feedback" role="alert">
+  <strong>{{ $message }}</strong>
+  </span>
+  @enderror
+  </div>
+
+
 <div class="form-group">
 <label for="productID">Product ID</label>
 <input type="text" name="productID" value="{{$edit->productID}}"  class="form-control @error('title') is-invalid @enderror"
@@ -31,18 +45,6 @@
 </span>
 @enderror
 </div>
-
-<div class="form-group">
-  <label for="agentID">Agent ID</label>
-  <input type="text" name="agentID" value="{{$edit->agentID}}"  class="form-control @error('title') is-invalid @enderror"
-   id="agentID" readonly>
-  
-  @error('title')
-  <span class="invalid-feedback" role="alert">
-  <strong>{{ $message }}</strong>
-  </span>
-  @enderror
-  </div>
 
 <div class="form-group">
 <label for="ProductName">Product Name</label>

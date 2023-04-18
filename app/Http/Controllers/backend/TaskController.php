@@ -17,44 +17,52 @@ class TaskController extends Controller
     }
   
         	
-    public function TaskList(Request $request)
+    public function TaskList(Request $request, $agentID)
     {
-        $list = DB::table('createtask')->get();
-        return view('backend.task.list_task',compact('list'));
+        $list = DB::table('createtask')->where('agentID', $agentID)->get();
+        $agent = Agent::where('id', $agentID)->first();
+        return view('backend.task.list_task',compact('list', 'agent'));
     }
 
 
     public function TaskAdd($agentID)
     {
-        $agent = Agent::find($agentID);
-        return view('backend.task.create_task', compact('agent'));
+
+        $list = DB::table('createtask')->where('agentID', $agentID)->get();
+        $agent = Agent::where('id', $agentID)->first();
+        // $agent = DB::table('agent')->where('id', $agentID)->get();
+        // $agent = Agent::find($agentID);
+        // return view('backend.task.create_task', compact('agent','list'));
+            return view('backend.task.create_task', compact('agent','list'));
     }
 
 
-public function TaskInsert(Request $request)
+public function TaskInsert(Request $request, $agentID)
 {
-    $agent = Agent::find($request->agentID); // Retrieve the Agent object
-    $data = array();
-    $data['agentID'] = $agent->id; // Use the id property of the Agent object
-    $data['productID'] = $request->productID;
-    $data['ProductName'] = $request->ProductName;  
-    $data['quantity'] = $request->quantity;
-    $data['pickupAdd'] = $request->pickupAdd; 
-    $data['pickupDate'] = $request->pickupDate; 
-    $data['deliveryAdd'] = $request->deliveryAdd;
-    $data['deliveryDate'] = $request->deliveryDate; 
-    $data['remarks'] = $request->remarks;  
-    $data['status'] = $request->status;   
-    $insert = DB::table('createtask')->insert($data);
+    $agent = Agent::find($agentID); // Retrieve the Agent object
+    $data = [
+        'agentID' => $agent->id,
+        'agentName' => $agent->agentName, // Use the id property of the Agent object
+        'productID' => $request->productID,
+        'ProductName' => $request->ProductName, 
+        'quantity' => $request->quantity,
+        'pickupAdd' => $request->pickupAdd, 
+        'pickupDate' => $request->pickupDate, 
+        'deliveryAdd' => $request->deliveryAdd,
+        'deliveryDate' => $request->deliveryDate, 
+        'remarks' => $request->remarks,  
+        'status' => $request->status,  
+    ];
+        $insert = DB::table('createtask')->insert($data);
        
     if ($insert) {
-        return Redirect()->route('task.index')->with('success','Task list created successfully!');
+        return redirect()->route('backend.task.list_task', ['agentID' => $agentID])->with('success','Task list created successfully!');
     } else {
         $notification=array(
             'messege'=>'error ',
             'alert-type'=>'error'
         );
-        return Redirect()->route('task.index')->with($notification);
+        return redirect()->route('backend.task.list_task')->with($notification);
     }
 }
 
@@ -72,7 +80,7 @@ public function TaskInsert(Request $request)
       
         DB::table('createtask')->where('id', $id)->first();        
         $data = array();
-        $data['agentID'] = $request->agentID;
+        $data['agentName'] = $request->agentName;
         $data['productID'] = $request->productID;
         $data['ProductName'] = $request->ProductName;
         $data['quantity'] = $request->quantity;
@@ -86,8 +94,13 @@ public function TaskInsert(Request $request)
 
         if ($update) 
     {
-            
-            return Redirect()->route('task.index')->with('success','Task List Updated successfully!');                     
+        $list = Agent::where('id', $id)->get(); 
+        $notification = [
+            'messege' => 'Task List updated successfully!',
+            'alert-type' => 'success'
+        ];
+        return view('backend.task.list_task', compact('list'))->with($notification);
+            // return Redirect()->route('backend.task.list_task')->with('success','Task List Updated successfully!');                     
     }
         else
     {
@@ -96,7 +109,7 @@ public function TaskInsert(Request $request)
         'messege'=>'error ',
         'alert-type'=>'error'
         );
-        return Redirect()->route('task.index')->with($notification);
+        return redirect()->route('backend.task.list_task', [ $id => 'id'])->with($notification);
     }
      
     }

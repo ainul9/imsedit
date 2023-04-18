@@ -23,9 +23,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('list_task', [App\Http\Controllers\backend\TaskController::class,'TaskList'])->name('task.index');
-Route::get('/add_task/{agentID}',[App\Http\Controllers\backend\TaskController::class,'TaskAdd'])->name('taskadd');
-Route::post('/insert_task', [App\Http\Controllers\backend\TaskController::class,'TaskInsert']);
+Route::get('/list_task/{agentID}', [App\Http\Controllers\backend\TaskController::class,'TaskList'])->name('backend.task.list_task');
+Route::get('/add_task/{agentID}',[App\Http\Controllers\backend\TaskController::class,'TaskAdd'])->name('backend.task.create_task');;
+Route::post('/insert_task/{agentID}', [App\Http\Controllers\backend\TaskController::class,'TaskInsert']);
 Route::get('/edit_task/{id}', [App\Http\Controllers\backend\TaskController::class,'TaskEdit']);
 Route::post('/update_task/{id}', [App\Http\Controllers\backend\TaskController::class,'TaskUpdate']);
 Route::get('/delete_task/{id}', [App\Http\Controllers\backend\TaskController::class,'TaskDelete']);
@@ -40,9 +40,9 @@ Route::get('/add_agent/{usersID}/{agentName}',[App\Http\Controllers\backend\Agen
 Route::post('/insert_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentInsert']);
 Route::get('/show_details/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentShow'])->name('backend.agent.show_details');
 // Route::get('/edit_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentEdit']);
-Route::get('/edit_agent/{agentID}', [App\Http\Controllers\backend\AgentController::class,'AgentEdit']);
-Route::POST('/update_agent/{agentID}', [App\Http\Controllers\backend\AgentController::class,'AgentUpdate']);
-Route::get('/delete_agent/{agentID}', [App\Http\Controllers\backend\AgentController::class,'AgentDelete']);
+Route::get('/edit_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentEdit']);
+Route::POST('/update_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentUpdate']);
+Route::get('/delete_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentDelete']);
 
 
 

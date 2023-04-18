@@ -70,24 +70,6 @@
 
 @if (Auth::user()->role == 1 )
 
-          <li class="nav-item">
-            <a href="{{URL::to('/list_task')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                List Task
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{URL::to('/add_task')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Add Task
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
 
           <li class="nav-item">
             <a href="{{URL::to('/list_agent')}}" class="nav-link">
@@ -98,16 +80,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{URL::to('/add_agent')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Add Agent
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-
           <li class="nav-item">
             <a href="{{URL::to('/user_list')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
