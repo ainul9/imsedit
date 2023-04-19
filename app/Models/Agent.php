@@ -30,10 +30,6 @@ class Agent extends Model
         return $this->belongsTo(User::class, 'usersID');
     }
 
-    public function task()
-    {
-        return $this->hasMany(Task::class, 'agentID');
-    }
 
 
 }
