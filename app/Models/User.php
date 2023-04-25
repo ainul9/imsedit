@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Agent::class, 'usersID');
     }
+
+    public function task()
+    {
+        return $this->hasMany(Task::class, 'usersID');
+    }
 }

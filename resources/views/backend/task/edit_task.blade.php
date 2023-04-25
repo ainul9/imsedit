@@ -22,7 +22,7 @@
 @if (Auth::user()->role == 1 )
 
 <div class="form-group">
-  <label for="agentName">Agent ID</label>
+  <label for="agentName">Agent Name</label>
   <input type="text" name="agentName" value="{{$edit->agentName}}"  class="form-control @error('title') is-invalid @enderror"
    id="agentID" readonly>
   
@@ -144,6 +144,19 @@
 
 
 @if (Auth::user()->role == 3 )
+
+<div class="form-group">
+  <label for="agentName">Agent Name</label>
+  <input type="text" name="agentName" value="{{$edit->agentName}}"  class="form-control @error('title') is-invalid @enderror"
+   id="agentID" readonly>
+  
+  @error('agentName')
+  <span class="invalid-feedback" role="alert">
+  <strong>{{ $message }}</strong>
+  </span>
+  @enderror
+  </div>
+
 <div class="form-group">
 <label for="productID">Product ID</label>
 <input type="text" name="productID"  value="{{$edit->productID}}" class="form-control @error('title') is-invalid @enderror"

@@ -9,9 +9,9 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $table = 'createtask';
+
     protected $fillable = [
-        'agentID',
-        'agentName',
         'productID',
         'productName',
         'quantity',
@@ -23,10 +23,11 @@ class Task extends Model
         'status'
     ];
 
-    protected $guarded = ['id','agentID','agentName'];
+    protected $guarded = ['usersID','agentName'];
 
-    public function agents()
+    public function user()
     {
-        return $this->belongsTo(Agent::class, 'agentID');
+        return $this->belongsTo(User::class, 'usersID');
     }
+
 }

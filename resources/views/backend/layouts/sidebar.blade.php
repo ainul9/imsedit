@@ -70,7 +70,15 @@
 
 @if (Auth::user()->role == 1 )
 
-
+          <li class="nav-item">
+              <a href="{{route('register')}}" class="text-center">Register a new membership</a>
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add New Agent
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{URL::to('/list_agent')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -93,55 +101,13 @@
 @endif
 
 
-@if (Auth::user()->role == 2 )
-
-          <li class="nav-item">
-            <a href="{{URL::to('/list_bookcategory')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                List Book Category
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{URL::to('/add_bookcategory')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Add Book Category
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{URL::to('/list_product')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Product List
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{URL::to('/add_product')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Add Product
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-
-     
-        
-@endif
-
-
 
 @if (Auth::user()->role == 3 )
 
           <li class="nav-item">
-            <a href="{{URL::to('/list_task')}}" class="nav-link">
+    
+            {{-- <a href="{{URL::to('/list_task/'.$task->usersID)}}" class="nav-link"> --}}
+            <a href="{{ route('backend.task.list_task', ['usersID' => Auth::user()->id]) }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 List Task

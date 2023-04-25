@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('createtask', function (Blueprint $table) {
             $table->id();
-            $table->foreign('agentID')->references('id')->on('agent');
+            $table->foreign('usersID')->references('id')->on('users');
+            $table->string('agentName')->unique();
             $table->string('productID')->unique();
             $table->string('ProductName');
             $table->string('agentID');

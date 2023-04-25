@@ -1,7 +1,12 @@
 @extends('backend.layouts.app')
 @section('content')
 
-
+<div>
+       @if (Auth::user()->role == 1 )     
+       <a href="{{ URL::to('/add_task/'.$agent->usersID) }}" class="btn btn-sm btn-info" style="right:0">Add Task</a>
+                          <!-- /.card-header -->
+       @endif
+</div><br>
        <div class="row">
 <div class="col-md-12">
 <div class="card card-primary">
@@ -10,14 +15,13 @@
 </div>
 
 
-          
+     
  <div class="card-body">
 
-<a href="{{ URL::to('/add_task/'.$agent->id) }}" class="btn btn-sm btn-primary" style="right:0">Add Task</a>
-            <!-- /.card-header -->
-
 <table id="example1" class="table table-bordered table-striped">
+
 <thead>
+      
 <tr>
 <th>Task ID</th>
 <th>Agent Name</th>
@@ -54,16 +58,15 @@
 
 
 
-
 <td>
 <a href="{{ URL::to('/edit_task/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
 @if (Auth::user()->role == 1 )
 <a href="{{ URL::to('delete_task/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
-@endif
+
 
 </td>
+@endif
 @endforeach
-
 
         </table>
         </div>
@@ -73,4 +76,4 @@
         </div>
         </div>
 
-            @endsection
+        @endsection
