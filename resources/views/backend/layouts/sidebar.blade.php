@@ -70,7 +70,7 @@
 
 @if (Auth::user()->role == 1 )
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
               <a href="{{route('register')}}" class="text-center">Register a new membership</a>
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -78,7 +78,7 @@
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="{{URL::to('/list_agent')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
