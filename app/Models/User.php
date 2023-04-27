@@ -42,6 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    protected $attributes = [
+        'role' => 3,
+    ];
+    
+
     public function agents()
     {
         return $this->hasMany(Agent::class, 'usersID');

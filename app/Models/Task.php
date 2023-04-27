@@ -15,6 +15,7 @@ class Task extends Model
         'productID',
         'productName',
         'quantity',
+        'service',
         'pickupAdd',
         'pickupDate',
         'deliveryAdd',

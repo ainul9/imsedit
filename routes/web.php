@@ -37,14 +37,17 @@ Route::get('/edit_user/{id}', [App\Http\Controllers\backend\UsermanagementContro
 Route::post('/update_user/{id}', [App\Http\Controllers\backend\UsermanagementController::class,'UserUpdate']);
 Route::get('/delete_user/{id}', [App\Http\Controllers\backend\UsermanagementController::class,'UserDelete']);
 
-Route::get('list_agent', [App\Http\Controllers\backend\AgentController::class,'AgentList']);
+Route::get('register_agent', 'App\Http\Controllers\backend\AgentController@registerAgent')->name('register_agent');
+Route::post('register_insert', 'App\Http\Controllers\backend\AgentController@registerInsert')->name('register_insert');
+Route::get('list_agent', [App\Http\Controllers\backend\AgentController::class,'AgentList'])->name('backend.agent.list_agent');;
 Route::get('/add_agent/{usersID}/{agentName}',[App\Http\Controllers\backend\AgentController::class,'AgentAdd'])->name('backend.agent.create_agent');
 Route::post('/insert_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentInsert']);
 Route::get('/show_details/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentShow'])->name('backend.agent.show_details');
 // Route::get('/edit_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentEdit']);
 Route::get('/edit_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentEdit']);
 Route::POST('/update_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentUpdate']);
-Route::get('/delete_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentDelete']);
+Route::get('delete_agent/{id}', [App\Http\Controllers\backend\AgentController::class,'AgentDelete']);
+Route::get('delete_details/{usersID}', [App\Http\Controllers\backend\AgentController::class,'DeleteDetails']);
 
 
 

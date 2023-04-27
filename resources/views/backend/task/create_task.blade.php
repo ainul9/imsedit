@@ -67,6 +67,22 @@
     </div>
     
     <div class="form-group">
+      <label for="service">Type of Service</label><br>
+      <select name="service" id="service" class="form-control" >
+        <option value="">Choose an option</option>
+        <option value="Door to Door">Door to Door</option>
+        <option value="Forwarding">Forwarding</option>
+        <option value="Pick and Pack">Pick and Pack</option>
+      </select>
+      
+      @error('title')
+<span class="invalid-feedback" role="alert">
+<strong>{{ $message }}</strong>
+</span>
+@enderror
+</div>
+    
+    <div class="form-group">
     <label for="pickupAdd">Pickup Address</label>
     <input type="text" name="pickupAdd"  class="form-control @error('slug') is-invalid @enderror"
      id="pickupAdd" placeholder="Enter Pickup Address">
@@ -128,11 +144,11 @@
 
         <div class="form-group">
                 <label for="status">Update Status</label><br>
-                <select name="status" id="status">
+                <select name="status" id="status" class="form-control">
                   <option value="">Choose an option</option>
+                  <option value="No Status">No Status</option>
                   <option value="Successfully Delivered">Successfully Delivered</option>
                   <option value="Failed to Deliver">Failed to Deliver</option>
-                  <option value="No Status">No Status</option>
                 </select>
                 
                 @error('title')

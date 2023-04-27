@@ -41,7 +41,7 @@
 
 @error('email')
     <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
+        <strong>{{ $message }}</strong>s
     </span>
 @enderror
           <div class="input-group-append">
@@ -69,7 +69,6 @@ autocomplete="new-password"  placeholder="Password">
 
 <div class="input-group mb-3">
 <input id="password-confirm" type="password"   placeholder="Confirm Password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
 
 @error('password')
 <span class="invalid-feedback" role="alert">

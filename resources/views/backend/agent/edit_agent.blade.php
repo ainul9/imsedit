@@ -42,21 +42,23 @@ id="usersID" readonly>
 </span>
 @enderror
 </div>
-
-<div class="form-group">
-   <label for="agentCat">Agent Category</label><br>
-   <select name="agentCat" id="agentCat" value="{{$edit->agentCat}}">
-     <option value="">Choose an option</option>
-     <option value="Delivery Agent">Delivery Agent</option>
-     <option value="Fulfillment Agent">Fulfillment Agent</option>
-   </select>
   
+
+  <div class="form-group">
+    <label for="agentCat">Agent Category</label><br>
+    <select name="agentCat" id="agentCat" class="form-control">
+        <option value="">Choose an option</option>
+        <option value="Delivery Agent" {{ $edit->agentCat == 'Delivery Agent' ? 'selected' : '' }}>Delivery Agent</option>
+        <option value="Fulfillment Agent" {{ $edit->agentCat == 'Fulfillment Agent' ? 'selected' : '' }}>Fulfillment Agent</option>
+    </select>
+  
+
   @error('agentCat')
   <span class="invalid-feedback" role="alert">
   <strong>{{ $message }}</strong>
   </span>
   @enderror
-  </div>
+</div>
 
   <div class="form-group">
     <label for="registrationNum">Agent Registration Number</label>

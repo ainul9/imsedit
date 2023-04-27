@@ -7,20 +7,18 @@
       <div class="col-md-2">
 
       </div>
-                     <div class="col-md-8">
+            <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add New Agent</h3>
+                <h3 class="card-title">Register New Agent</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-                  <form method="POST" action="{{ route('register') }}">
+                  <form method="POST" action="{{ route('register_insert') }}">
                     @csrf
-                
-                  
-                  
-
+              <div class="card-body">
+              <div class="col-md-12">
                     <div class="input-group mb-3">
                       <input type="text" name="name" class="form-control" placeholder="Full name" autofocus>
                       <div class="input-group-append">
@@ -44,6 +42,8 @@
                         </div>
                       </div>
                     </div>
+
+
             <div class="input-group mb-3">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required
             autocomplete="new-password"  placeholder="Password">
@@ -62,9 +62,10 @@
             
             
             <div class="input-group mb-3">
-            <input id="password-confirm" type="password"   placeholder="Confirm Password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-            
-            
+              <input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control" required autocomplete="new-password">
+
+            {{-- <input id="password-confirm" type="password"   placeholder="Confirm Password" class="form-control" name="password_confirmation" required autocomplete="new-password"> --}}
+
             @error('password')
             <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -80,9 +81,9 @@
                     <div class="row">
                       <div class="col-8">
                         <div class="icheck-primary">
-                          <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                          <label for="agreeTerms">
-                           I agree to the <a href="#">terms</a>
+                          <input type="checkbox" id="terms" name="terms" required>
+                          <label for="terms">
+                           Confirm Registration for this Agent
                           </label>
                         </div>
                       </div>
@@ -104,15 +105,16 @@
             <!-- /.card -->
         </div>
 
-
  <div class="col-md-2">
 
       </div>
+    </div>
 
 
             </div>
             <!-- /.row -->
         </div>
+      </div>
 
                         <script type="text/javascript">
     function readURL(input) {

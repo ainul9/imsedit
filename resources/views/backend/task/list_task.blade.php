@@ -28,6 +28,7 @@
 <th>Product ID</th>               
 <th>Product Name</th>  
 <th>Quantity</th>
+<th>Type of Service</th>
 <th>Pickup Address</th>
 <th>Pickup Date & Time</th>
 <th>Delivery Address</th>
@@ -48,6 +49,7 @@
 <td>{{ $row->productID }}</td>
 <td> {{ $row->ProductName }} </td>
 <td>{{ $row->quantity }}</td>
+<td>{{ $row->service }}</td>
 <td>{{ $row->pickupAdd }}</td>
 <td>{{ $row->pickupDate }}</td>
 <td>{{ $row->deliveryAdd }}</td>

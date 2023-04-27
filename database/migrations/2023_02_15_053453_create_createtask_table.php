@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('ProductName');
             $table->string('agentID');
             $table->string('quantity');
+            $table->enum('service', ['','Door to Door', 'Forwarding', 'Pick and Pack']);
             $table->string('pickupAdd'); 
             $table->dateTime('pickupDate'); 
             $table->string('deliveryAdd');

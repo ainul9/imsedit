@@ -70,15 +70,17 @@
 
 @if (Auth::user()->role == 1 )
 
-          {{-- <li class="nav-item">
-              <a href="{{route('register')}}" class="text-center">Register a new membership</a>
+          <li class="nav-item">
+              {{-- <a href="{{route('register')}}" class="nav-link"> --}}
+              {{-- <a href="{{URL::to('/register_agent')}}" class="nav-link"> --}}
+              <a href="{{ route('register_agent') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Add New Agent
+                Register New Agent
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
-          </li> --}}
+          </li>
           <li class="nav-item">
             <a href="{{URL::to('/list_agent')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>

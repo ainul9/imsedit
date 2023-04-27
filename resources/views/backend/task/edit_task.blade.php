@@ -70,6 +70,29 @@
   @enderror
   </div>
   
+
+
+{{-- <div class="form-group">
+  <label for="service">Type of Service</label><br>
+  <select name="service" id="service" class="form-control">
+    <option value="">-- Select Service --</option>
+    @foreach ($services as $service)
+    <option value="{{ $service }}" @if($edit->service==$service) selected="selected" @endif>{{ $service }}</option>
+    @endforeach
+  </select>
+</div> --}}
+
+<div class="form-group">
+  <label for="service">Type of Service</label><br>
+  <select name="service" id="service" class="form-control">
+      <option value="">Choose an option</option>
+      <option value="Door to Door" {{ $edit->service == 'Door to Door' ? 'selected' : '' }}>Door to Door</option>
+      <option value="Forwarding" {{ $edit->service == 'Forwarding' ? 'selected' : '' }}>Forwarding</option>
+      <option value="Pick and Pack" {{ $edit->service == 'Pick and Pack' ? 'selected' : '' }}>Pick and Pack</option>
+  </select>
+</div>
+
+
   <div class="form-group">
   <label for="pickupAdd">Pickup Address</label>
   <input type="text" name="pickupAdd" value="{{$edit->pickupAdd}}"  class="form-control @error('slug') is-invalid @enderror"
@@ -128,16 +151,30 @@
     <strong>{{ $message }}</strong>
     </span>
     @enderror
-  </div>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label><br>
+      <select name="status" id="status" class="form-control">
+          <option value="">Choose an option</option>
+          <option value="No Status" {{ $edit->status == 'No Status' ? 'selected' : '' }}>No Status</option>
+          <option value="Successfully Delivered" {{ $edit->status == 'Successfully Delivered' ? 'selected' : '' }}>Successfully Delivered</option>
+          <option value="Failed to Deliver" {{ $edit->status == 'Failed to Deliver' ? 'selected' : '' }}>Failed to Deliver</option>
+      </select>
+    </div>
 
 
-<div class="form-group">
-              <label for="status">Status</label><br>
-              <select name="status" id="status">
-                <option value="">Choose an option</option>
-                <option value="No Status">No Status</option>
-              </select>
-</div>
+
+
+{{-- <div class="form-group">
+  <label for="status">Status</label><br>
+  <select name="status" id="status" class="form-control">
+    <option value="">-- Select Status --</option>
+    @foreach ($statuses as $status)
+    <option value="{{ $status }}" @if($edit->status==$status) selected="selected" @endif>{{ $status }}</option>
+    @endforeach
+  </select>
+</div> --}}
 @endif
 
 
@@ -192,7 +229,29 @@
   </span>
   @enderror
   </div>
-  
+
+
+{{-- <div class="form-group">
+  <label for="service">Type of Service</label><br>
+  <select name="service" id="service" class="form-control">
+    <option value="">-- Select Service --</option>
+    @foreach ($services as $service)
+    <option value="{{ $service }}" @if($edit->service==$service) selected="selected" @endif>{{ $service }}</option>
+    @endforeach
+  </select>
+</div>
+   --}}
+
+   <div class="form-group">
+    <label for="service">Type of Service</label><br>
+    <select name="service" id="service" class="form-control">
+        <option value="">Choose an option</option>
+        <option value="Door to Door" {{ $edit->service == 'Door to Door' ? 'selected' : '' }}>Door to Door</option>
+        <option value="Forwarding" {{ $edit->service == 'Forwarding' ? 'selected' : '' }}>Forwarding</option>
+        <option value="Pick and Pack" {{ $edit->service == 'Pick and Pack' ? 'selected' : '' }}>Pick and Pack</option>
+    </select>
+</div>
+
   <div class="form-group">
   <label for="pickupAdd">Pickup Address</label>
   <input type="text" name="pickupAdd" value="{{$edit->pickupAdd}}"  class="form-control @error('slug') is-invalid @enderror"
@@ -253,17 +312,24 @@
     @enderror
   </div>
 
+  <div class="form-group">
+    <label for="status">Status</label><br>
+    <select name="status" id="status" class="form-control">
+        <option value="">Choose an option</option>
+        <option value="No Status" {{ $edit->status == 'No Status' ? 'selected' : '' }}>No Status</option>
+        <option value="Successfully Delivered" {{ $edit->status == 'Successfully Delivered' ? 'selected' : '' }}>Successfully Delivered</option>
+        <option value="Failed to Deliver" {{ $edit->status == 'Failed to Deliver' ? 'selected' : '' }}>Failed to Deliver</option>
+    </select>
+  </div>
 
-<div class="form-group">
-              <label for="status">Update Status</label><br>
-              <select name="status" id="status">
-                
-                <option value="" >Choose an option</option>
-                <option value="Successfully Delivered">Successfully Delivered</option>
-                <option value="Failed to Deliver">Failed to Deliver</option>
-              </select>
-
-</div>
+{{-- <div class="form-group">
+  <label for="status">Status</label><br>
+  <select name="status" id="status" class="form-control">
+    <option value="">-- Select Status --</option>
+    @foreach ($statuses as $status)
+    <option value="{{ $status }}" @if($edit->status==$status) selected="selected" @endif>{{ $status }}</option>
+    @endforeach
+  </select> --}}
 @endif
 
                  

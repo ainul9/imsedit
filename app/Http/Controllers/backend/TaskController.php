@@ -17,7 +17,7 @@ class TaskController extends Controller
     {
         $this->middleware('auth');
     }
-  
+    
         	
     public function TaskList(Request $request, $usersID)
     {
@@ -66,6 +66,7 @@ public function TaskInsert(Request $request, $usersID)
         'productID' => $request->productID,
         'ProductName' => $request->ProductName, 
         'quantity' => $request->quantity,
+        'service' => $request->service,
         'pickupAdd' => $request->pickupAdd, 
         'pickupDate' => $request->pickupDate, 
         'deliveryAdd' => $request->deliveryAdd,
@@ -92,6 +93,8 @@ public function TaskInsert(Request $request, $usersID)
         $edit=DB::table('createtask')
              ->where('id',$id)
              ->first();
+            //  $services = DB::table('createtask')->distinct()->pluck('service');
+            //  $statuses = DB::table('createtask')->distinct()->pluck('status');
         return view('backend.task.edit_task', compact('edit'));     
     }
 
@@ -104,6 +107,7 @@ public function TaskInsert(Request $request, $usersID)
         'productID' => $request->productID,
         'ProductName' => $request->ProductName,
         'quantity' => $request->quantity,
+        'service' => $request->service,
         'pickupAdd' => $request->pickupAdd, 
         'pickupDate' => $request->pickupDate, 
         'deliveryAdd' => $request->deliveryAdd,
@@ -142,40 +146,13 @@ public function TaskDelete ($id)
         $delete = DB::table('createtask')->where('id', $id)->delete();
         if ($delete)
                             {
-                            $notification=array(
-                            'messege'=>'Successfully Task List Deleted ',
-                            'alert-type'=>'success'
-                            );
-                            return Redirect()->back()->with($notification);                      
+                            return Redirect()->back()->with('success', 'The selected task has been successfully deleted.');                      
                             }
-             else
-                  {
-                  $notification=array(
-                  'messege'=>'error ',
-                  'alert-type'=>'error'
-                  );
-                  return Redirect()->back()->with($notification);
+             else{
+                  return Redirect()->back()->with('error', 'There was an error while deleting the selected task.');
 
                   }
 
-      }
-
-
-
-    //   public function AgentViewTask(Request $request, $usersID)
-    //   {
-    //       $userView = auth()->user();
-    //       $listView = DB::table('createtask')->where('usersID', $usersID)->get();
-    //     //   $agent = Agent::where('usersID', $usersID)->first();
-    //     //   $usersID = $agent->usersID;
-    //       // $list = Task::where('usersID', $usersID)->get();
-    //       $userView = User::where('id', $usersID)->first();
-    //       return view('backend.task.list_task', compact('listView', 'userView'));
-    //   }
-
-// public function Back()
-// {
-//     return redirect()->route('backend.task.list_task');
-// }
+    }
 
 }
