@@ -303,7 +303,7 @@
     <div class="form-group">
     <label for="remarks">Remarks</label>
     <input type="text" name="remarks" value="{{$edit->remarks}}"  class="form-control @error('slug') is-invalid @enderror"
-     id="remarks" readonly>
+     id="remarks">
     
     @error('slug')
     <span class="invalid-feedback" role="alert">
