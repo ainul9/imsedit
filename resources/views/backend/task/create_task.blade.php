@@ -146,9 +146,13 @@
                 <label for="status">Update Status</label><br>
                 <select name="status" id="status" class="form-control">
                   <option value="">Choose an option</option>
-                  <option value="No Status">No Status</option>
-                  <option value="Successfully Delivered">Successfully Delivered</option>
+                  <option value="Assigned">Assigned</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="On Hold">On Hold</option>
+                  <option value="Deffered">Deffered</option>
+                  <option value="Completed">Completed</option>
                   <option value="Failed to Deliver">Failed to Deliver</option>
+                  <option value="Cancelled">Cancelled</option>
                 </select>
                 
                 @error('title')

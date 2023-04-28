@@ -48,8 +48,10 @@ id="usersID" readonly>
     <label for="agentCat">Agent Category</label><br>
     <select name="agentCat" id="agentCat" class="form-control">
         <option value="">Choose an option</option>
+        <option value="Forwarding Agent" {{ $edit->agentCat == 'Forwarding Agent' ? 'selected' : '' }}>Forwarding Agent</option>
         <option value="Delivery Agent" {{ $edit->agentCat == 'Delivery Agent' ? 'selected' : '' }}>Delivery Agent</option>
         <option value="Fulfillment Agent" {{ $edit->agentCat == 'Fulfillment Agent' ? 'selected' : '' }}>Fulfillment Agent</option>
+        <option value="Both Fulfillment and Delivery Agent" {{ $edit->agentCat == 'Both Fulfillment and Delivery Agent' ? 'selected' : '' }}>Both Fulfillment and Delivery Agent</option>
     </select>
   
 

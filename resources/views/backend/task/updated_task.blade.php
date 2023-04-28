@@ -22,8 +22,9 @@
                             <th>Delivery Address</th>
                             <th>Delivery Date & Time</th>
                             <th>Remarks</th> 
-                            <th>Update Status</th> 
-                            <th>Action</th>              
+                            <th>Update Status</th>  
+                            <th>Updated By</th>
+                            <th>Action</th>   
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +42,7 @@
                                 <td>{{ $row->deliveryDate }}</td>
                                 <td>{{ $row->remarks }}</td>
                                 <td>{{ $row->status }}</td>
+                                <td>{{ $row->updatedBy }}</td>
                                 <td>
                                     <a href="{{ URL::to('/edit_task/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
                                     @if (Auth::user()->role == 1 )

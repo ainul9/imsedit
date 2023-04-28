@@ -157,9 +157,13 @@
       <label for="status">Status</label><br>
       <select name="status" id="status" class="form-control">
           <option value="">Choose an option</option>
-          <option value="No Status" {{ $edit->status == 'No Status' ? 'selected' : '' }}>No Status</option>
-          <option value="Successfully Delivered" {{ $edit->status == 'Successfully Delivered' ? 'selected' : '' }}>Successfully Delivered</option>
+          <option value="Assigned" {{ $edit->status == 'Assigned' ? 'selected' : '' }}>Assigned</option>
+          <option value="In Progress" {{ $edit->status == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+          <option value="On Hold" {{ $edit->status == 'On Hold' ? 'selected' : '' }}>On Hold</option>
+          <option value="Deffered" {{ $edit->status == 'Deffered' ? 'selected' : '' }}>Deffered</option>
+          <option value="Completed" {{ $edit->status == 'Completed' ? 'selected' : '' }}>Completed</option>
           <option value="Failed to Deliver" {{ $edit->status == 'Failed to Deliver' ? 'selected' : '' }}>Failed to Deliver</option>
+          <option value="Cancelled" {{ $edit->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
       </select>
     </div>
 
@@ -242,15 +246,17 @@
 </div>
    --}}
 
-   <div class="form-group">
-    <label for="service">Type of Service</label><br>
-    <select name="service" id="service" class="form-control">
-        <option value="">Choose an option</option>
-        <option value="Door to Door" {{ $edit->service == 'Door to Door' ? 'selected' : '' }}>Door to Door</option>
-        <option value="Forwarding" {{ $edit->service == 'Forwarding' ? 'selected' : '' }}>Forwarding</option>
-        <option value="Pick and Pack" {{ $edit->service == 'Pick and Pack' ? 'selected' : '' }}>Pick and Pack</option>
-    </select>
+<div class="form-group">
+  <label for="service">Type of Service</label><br>
+  <select name="service" id="service" class="form-control" disabled>
+      <option value="" readonly>Choose an option</option>
+      <option value="Door to Door" {{ $edit->service == 'Door to Door' ? 'selected' : '' }}>Door to Door</option>
+      <option value="Forwarding" {{ $edit->service == 'Forwarding' ? 'selected' : '' }}>Forwarding</option>
+      <option value="Pick and Pack" {{ $edit->service == 'Pick and Pack' ? 'selected' : '' }}>Pick and Pack</option>
+  </select>
+  <input type="hidden" name="service" value="{{ $edit->service }}">
 </div>
+
 
   <div class="form-group">
   <label for="pickupAdd">Pickup Address</label>
@@ -316,11 +322,13 @@
     <label for="status">Status</label><br>
     <select name="status" id="status" class="form-control">
         <option value="">Choose an option</option>
-        <option value="No Status" {{ $edit->status == 'No Status' ? 'selected' : '' }}>No Status</option>
-        <option value="Successfully Delivered" {{ $edit->status == 'Successfully Delivered' ? 'selected' : '' }}>Successfully Delivered</option>
+        <option value="In Progress" {{ $edit->status == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+        <option value="On Hold" {{ $edit->status == 'On Hold' ? 'selected' : '' }}>On Hold</option>
+        <option value="Deffered" {{ $edit->status == 'Deffered' ? 'selected' : '' }}>Deffered</option>
+        <option value="Completed" {{ $edit->status == 'Completed' ? 'selected' : '' }}>Completed</option>
         <option value="Failed to Deliver" {{ $edit->status == 'Failed to Deliver' ? 'selected' : '' }}>Failed to Deliver</option>
     </select>
-  </div>
+  </div> 
 
 {{-- <div class="form-group">
   <label for="status">Status</label><br>

@@ -48,8 +48,10 @@
   <label for="agentCat">Agent Category</label><br>
   <select name="agentCat" id="agentCat" class="form-control">
     <option value="">Choose an option</option>
+    <option value="Forwarding Agent">Forwarding Agent</option>
     <option value="Delivery Agent">Delivery Agent</option>
     <option value="Fulfillment Agent">Fulfillment Agent</option>
+    <option value="Both Fulfillment and Delivery Agent">Both Fulfillment and Delivery Agent</option>
   </select>
   
   @error('slug')

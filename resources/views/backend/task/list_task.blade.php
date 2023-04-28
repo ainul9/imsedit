@@ -35,8 +35,9 @@
 <th>Delivery Date & Time</th>
 <th>Remarks</th> 
 <th>Update Status</th> 
+<th>Updated by</th>  
+<th>Action</th>
 
-<th>Action</th>  
               
 </tr>
 </thead>
@@ -56,7 +57,7 @@
 <td> {{ $row->deliveryDate }} </td>
 <td>{{ $row->remarks }}</td>
 <td>{{ $row->status }}</td>
-
+<td>{{ $row->updatedBy }}</td>
 
 
 
@@ -64,8 +65,6 @@
 <a href="{{ URL::to('/edit_task/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
 @if (Auth::user()->role == 1 )
 <a href="{{ URL::to('delete_task/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
-
-
 </td>
 @endif
 @endforeach
