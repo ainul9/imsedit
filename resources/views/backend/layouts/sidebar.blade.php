@@ -112,7 +112,7 @@
             <a href="{{ route('backend.task.list_task', ['usersID' => Auth::user()->id]) }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                List Task
+                Task List
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
