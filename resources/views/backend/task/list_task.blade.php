@@ -25,7 +25,7 @@
 <tr>
 <th>Task ID</th>
 <th>Agent Name</th>
-<th>Product ID</th>               
+<th>Booking Number</th>               
 <th>Product Name</th>  
 <th>Quantity</th>
 <th>Type of Service</th>
@@ -47,7 +47,7 @@
 {{-- <td>{{ $row->agentID }}</td> --}}
 <td>{{ $row->id }}</td>
 <td>{{ $row->agentName }}</td>
-<td>{{ $row->productID }}</td>
+<td>{{ $row->bookingNum }}</td>
 <td> {{ $row->ProductName }} </td>
 <td>{{ $row->quantity }}</td>
 <td>{{ $row->service }}</td>

@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('list_agent', [App\Http\Controllers\backend\APIController::class,'AgentList2']);
+Route::post('/insert_task/{usersID}', [App\Http\Controllers\backend\APIController::class,'TaskInsert2']);
+Route::get('/list_task/{usersID}', [App\Http\Controllers\backend\APIController::class,'TaskList2']);
+

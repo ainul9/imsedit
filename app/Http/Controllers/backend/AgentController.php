@@ -118,7 +118,7 @@ public function AgentInsert(Request $request, $usersID)
 }
 
 
-public function AgentShow(Request $request, $usersID)
+    public function AgentShow(Request $request, $usersID)
     {
         
         // $list = DB::table('agent')->get();
@@ -129,41 +129,6 @@ public function AgentShow(Request $request, $usersID)
        
     }
      
-
-//     public function AgentInsert(Request $request)
-//     {
-
-
-// $user = User::find($request->id);
-// $data = [];
-// $data['agentCat'] = $request->agentCat;
-// $data['registrationNum'] = $request->registrationNum;
-// $data['contact'] = $request->contact;
-// $data['address'] = $request->address;
-// $data['city'] = $request->city;
-// $data['postcode'] = $request->postcode;
-// $data['state'] = $request->state;
-// $data['country'] = $request->country;
-// $data['remarks'] = $request->remarks;
-// $insert = DB::table('agent')->insert($data);
-       
-// if ($usersID) 
-// {
-   
-//                 return Redirect()->route('agent.index')->with('success','Agent created successfully!');
-                 
-//         }
-// else
-//         {
-//         $notification=array
-//         (
-//         'messege'=>'error ',
-//         'alert-type'=>'error'
-//         );
-//         return Redirect()->route('agent.index')->with($notification);
-//         }
-           
-// }
 
     public function AgentEdit ($usersID)
     {
@@ -210,7 +175,7 @@ public function AgentShow(Request $request, $usersID)
      
     }
 
-public function AgentDelete ($id)
+    public function AgentDelete ($id)
     {
     
         $delete = DB::table('users')->where('id', $id)->delete();

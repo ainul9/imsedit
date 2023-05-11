@@ -17,45 +17,25 @@ class TaskController extends Controller
     {
         $this->middleware('auth');
     }
-    
-        	
-    // public function TaskList(Request $request, $usersID)
-    // {
-    //     $list = []; 
-    //     $user = auth()->user();
-    //     if ($user->role == 3){
-    //         $list = DB::table('createtask')->where('usersID', $usersID)->get();
-    //         $updatedBy = DB::table('users')->where('name', $name)->get();
-    //         return view('backend.task.list_task', compact('list','updated'));
-    //     }
-    //     else{
-    //         $list = DB::table('createtask')->where('usersID', $usersID)->get();
-    //         $agent = Agent::where('usersID', $usersID)->first();
-    //         $usersID = $agent->usersID;
-    //         $user = User::where('id', $usersID)->first();
-    //         return view('backend.task.list_task', compact('list', 'user', 'agent'));
-    //     }
-
-    // }
 
     public function TaskList(Request $request, $usersID)
-{
-    $list = []; 
-    $user = auth()->user();
-    if ($user->role == 3) {
-        $list = DB::table('createtask')
-            ->leftJoin('users', 'createtask.updatedBy', '=', 'users.name')
-            ->where('usersID', $usersID)
-            ->get(['createtask.*', 'users.name as updatedBy']);
-        return view('backend.task.list_task', compact('list'));
-    } else {
-        $list = DB::table('createtask')->where('usersID', $usersID)->get();
-        $agent = Agent::where('usersID', $usersID)->first();
-        $usersID = $agent->usersID;
-        $user = User::where('id', $usersID)->first();
-        return view('backend.task.list_task', compact('list', 'user', 'agent'));
+    {
+        $list = []; 
+        $user = auth()->user();
+        if ($user->role == 3) {
+            $list = DB::table('createtask')
+                ->leftJoin('users', 'createtask.updatedBy', '=', 'users.name')
+                ->where('usersID', $usersID)
+                ->get(['createtask.*', 'users.name as updatedBy']);
+            return view('backend.task.list_task', compact('list'));
+        } else {
+            $list = DB::table('createtask')->where('usersID', $usersID)->get();
+            $agent = Agent::where('usersID', $usersID)->first();
+            $usersID = $agent->usersID;
+            $user = User::where('id', $usersID)->first();
+            return view('backend.task.list_task', compact('list', 'user', 'agent'));
+        }
     }
-}
 
 
     public function TaskAdd($usersID)
@@ -70,36 +50,36 @@ class TaskController extends Controller
     }
 
 
-public function TaskInsert(Request $request, $usersID)
-{
-    $user = User::find($usersID); // Retrieve the Agent object
-    $data = [
-        'usersID' => $user->id,
-        'agentName' => $user->name, // Use the id property of the Agent object
-        'productID' => $request->productID,
-        'ProductName' => $request->ProductName, 
-        'quantity' => $request->quantity,
-        'service' => $request->service,
-        'pickupAdd' => $request->pickupAdd, 
-        'pickupDate' => $request->pickupDate, 
-        'deliveryAdd' => $request->deliveryAdd,
-        'deliveryDate' => $request->deliveryDate, 
-        'remarks' => $request->remarks,  
-        'status' => $request->status,  
-          
-    ];
-        $insert = DB::table('createtask')->insert($data);
-       
-    if ($insert) {
-        return redirect()->route('backend.task.list_task', ['usersID' => $usersID])->with('success','Task list created successfully!');
-    } else {
-        $notification=array(
-            'messege'=>'error ',
-            'alert-type'=>'error'
-        );
-        return redirect()->route('backend.task.list_task')->with($notification);
+    public function TaskInsert(Request $request, $usersID)
+    {
+        $user = User::find($usersID); // Retrieve the Agent object
+        $data = [
+            'usersID' => $user->id,
+            'agentName' => $user->name, // Use the id property of the Agent object
+            'bookingNum' => $request->bookingNum,
+            'ProductName' => $request->ProductName, 
+            'quantity' => $request->quantity,
+            'service' => $request->service,
+            'pickupAdd' => $request->pickupAdd, 
+            'pickupDate' => $request->pickupDate, 
+            'deliveryAdd' => $request->deliveryAdd,
+            'deliveryDate' => $request->deliveryDate, 
+            'remarks' => $request->remarks,  
+            'status' => $request->status,  
+            
+        ];
+            $insert = DB::table('createtask')->insert($data);
+        
+        if ($insert) {
+            return redirect()->route('backend.task.list_task', ['usersID' => $usersID])->with('success','Task list created successfully!');
+        } else {
+            $notification=array(
+                'messege'=>'error ',
+                'alert-type'=>'error'
+            );
+            return redirect()->route('backend.task.list_task')->with($notification);
+        }
     }
-}
 
 
       public function TaskEdit ($id)
@@ -123,7 +103,7 @@ public function TaskInsert(Request $request, $usersID)
     
         $data = array(
             'agentName' => $request->agentName,
-            'productID' => $request->productID,
+            'bookingNum' => $request->bookingNum,
             'ProductName' => $request->ProductName,
             'quantity' => $request->quantity,
             'service' => $request->service,
@@ -158,19 +138,19 @@ public function TaskInsert(Request $request, $usersID)
         
     }
 
-public function TaskDelete ($id)
-    {
-    
-        $delete = DB::table('createtask')->where('id', $id)->delete();
-        if ($delete)
-                            {
-                            return Redirect()->back()->with('success', 'The selected task has been successfully deleted.');                      
-                            }
-             else{
-                  return Redirect()->back()->with('error', 'There was an error while deleting the selected task.');
+    public function TaskDelete ($id)
+        {
+        
+            $delete = DB::table('createtask')->where('id', $id)->delete();
+            if ($delete)
+                                {
+                                return Redirect()->back()->with('success', 'The selected task has been successfully deleted.');                      
+                                }
+                else{
+                    return Redirect()->back()->with('error', 'There was an error while deleting the selected task.');
 
-                  }
+                    }
 
-    }
+        }
 
 }

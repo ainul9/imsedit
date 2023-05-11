@@ -4,17 +4,6 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -48,38 +37,3 @@ Route::get('/edit_agent/{usersID}', [App\Http\Controllers\backend\AgentControlle
 Route::POST('/update_agent/{usersID}', [App\Http\Controllers\backend\AgentController::class,'AgentUpdate']);
 Route::get('delete_agent/{id}', [App\Http\Controllers\backend\AgentController::class,'AgentDelete']);
 Route::get('delete_details/{usersID}', [App\Http\Controllers\backend\AgentController::class,'DeleteDetails']);
-
-
-
-
-
-
-// public function AgentInsert(Request $request, $usersID)
-// {
-//     $user = User::find($usersID);
-//     $data = [
-//         'usersID' => $user->id,
-//         'agentName' => $user->name,
-//         'agentCat' => $request->agentCat,
-//         'registrationNum' => $request->registrationNum,
-//         'contact' => $request->contact,
-//         'address' => $request->address,
-//         'city' => $request->city,
-//         'postcode' => $request->postcode,
-//         'state' => $request->state,
-//         'country' => $request->country,
-//         'remarks' => $request->remarks,
-//     ];
-//     $insert = DB::table('agent')->insert($data);
-    
-//     if ($insert) {
-//         return redirect()->route('backend.agent.show_details', ['usersID' => $usersID])->with('success', 'Agent details added successfully!');
-//         // return redirect()->route('backend.agent.show_details')->with('success', 'Agent details added successfully!');
-//     } else {
-//         $notification = [
-//             'messege' => 'Error creating agent',
-//             'alert-type' => 'error'
-//         ];
-//         return redirect()->route('backend.agent.show_details')->with($notification);
-//     }
-// }

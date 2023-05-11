@@ -31,9 +31,9 @@
 
 
 <div class="form-group">
-<label for="productID">Product ID</label>
-<input type="text" name="productID"  class="form-control @error('title') is-invalid @enderror"
- id="productID" placeholder="Enter Product ID or Product Code">
+<label for="bookingNum">Booking Number</label>
+<input type="text" name="bookingNum"  class="form-control @error('title') is-invalid @enderror"
+ id="bookingNum" placeholder="Enter Booking Number">
 
 @error('title')
 <span class="invalid-feedback" role="alert">

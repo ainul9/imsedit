@@ -35,9 +35,9 @@
 
 
 <div class="form-group">
-<label for="productID">Product ID</label>
-<input type="text" name="productID" value="{{$edit->productID}}"  class="form-control @error('title') is-invalid @enderror"
- id="productID" placeholder="Enter Product ID or Product Code">
+<label for="bookingNum">Booking Number</label>
+<input type="text" name="bookingNum" value="{{$edit->bookingNum}}"  class="form-control @error('title') is-invalid @enderror"
+ id="bookingNum" placeholder="Enter Booking Number">
 
 @error('title')
 <span class="invalid-feedback" role="alert">
@@ -69,18 +69,6 @@
   </span>
   @enderror
   </div>
-  
-
-
-{{-- <div class="form-group">
-  <label for="service">Type of Service</label><br>
-  <select name="service" id="service" class="form-control">
-    <option value="">-- Select Service --</option>
-    @foreach ($services as $service)
-    <option value="{{ $service }}" @if($edit->service==$service) selected="selected" @endif>{{ $service }}</option>
-    @endforeach
-  </select>
-</div> --}}
 
 <div class="form-group">
   <label for="service">Type of Service</label><br>
@@ -168,17 +156,6 @@
     </div>
 
 
-
-
-{{-- <div class="form-group">
-  <label for="status">Status</label><br>
-  <select name="status" id="status" class="form-control">
-    <option value="">-- Select Status --</option>
-    @foreach ($statuses as $status)
-    <option value="{{ $status }}" @if($edit->status==$status) selected="selected" @endif>{{ $status }}</option>
-    @endforeach
-  </select>
-</div> --}}
 @endif
 
 
@@ -199,9 +176,9 @@
   </div>
 
 <div class="form-group">
-<label for="productID">Product ID</label>
-<input type="text" name="productID"  value="{{$edit->productID}}" class="form-control @error('title') is-invalid @enderror"
- id="productID" readonly>
+<label for="bookingNum">Booking Number</label>
+<input type="text" name="bookingNum"  value="{{$edit->bookingNum}}" class="form-control @error('title') is-invalid @enderror"
+ id="bookingNum" readonly>
 
 @error('title')
 <span class="invalid-feedback" role="alert">
@@ -233,18 +210,6 @@
   </span>
   @enderror
   </div>
-
-
-{{-- <div class="form-group">
-  <label for="service">Type of Service</label><br>
-  <select name="service" id="service" class="form-control">
-    <option value="">-- Select Service --</option>
-    @foreach ($services as $service)
-    <option value="{{ $service }}" @if($edit->service==$service) selected="selected" @endif>{{ $service }}</option>
-    @endforeach
-  </select>
-</div>
-   --}}
 
 <div class="form-group">
   <label for="service">Type of Service</label><br>
@@ -329,15 +294,6 @@
         <option value="Failed to Deliver" {{ $edit->status == 'Failed to Deliver' ? 'selected' : '' }}>Failed to Deliver</option>
     </select>
   </div> 
-
-{{-- <div class="form-group">
-  <label for="status">Status</label><br>
-  <select name="status" id="status" class="form-control">
-    <option value="">-- Select Status --</option>
-    @foreach ($statuses as $status)
-    <option value="{{ $status }}" @if($edit->status==$status) selected="selected" @endif>{{ $status }}</option>
-    @endforeach
-  </select> --}}
 @endif
 
                  

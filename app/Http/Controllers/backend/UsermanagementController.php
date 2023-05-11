@@ -24,38 +24,11 @@ class UsermanagementController extends Controller
     }
 
 
-public function UserAdd()
-{
-$all = DB::table('users')->get();
-return view('backend.user.create_User',compact('all'));
-}
-
-    
-
-//     public function UserInsert(Request $request)
-//     {
-// $data = array();
-// $data['role'] = $request->role;
-
-// $insert = DB::table('users')->insert($data);
-       
-// if ($insert) 
-// {
-   
-//                 return Redirect()->route('user.index')->with('success','User created successfully!');
-                 
-//         }
-// else
-//         {
-//         $notification=array
-//         (
-//         'messege'=>'error ',
-//         'alert-type'=>'error'
-//         );
-//         return Redirect()->route('User.index')->with($notification);
-//         }
-           
-// }
+    public function UserAdd()
+    {
+        $all = DB::table('users')->get();
+        return view('backend.user.create_User',compact('all'));
+    }
 
       public function UserEdit ($id)
     {
@@ -86,18 +59,18 @@ return view('backend.user.create_User',compact('all'));
      
     }
 
-public function UserDelete ($id)
-    {
-    
-        $delete = DB::table('users')->where('id', $id)->delete();
-        if ($delete)
-                            {
-                                return Redirect()->route('user.index')->with('success','User Deleted successfully!');                  
-                            }
-             else
-                  {
-                    return Redirect()->route('user.index')->with('error','Somthing is Wrong!');  
-                  }
+    public function UserDelete ($id)
+        {
+        
+            $delete = DB::table('users')->where('id', $id)->delete();
+            if ($delete)
+                                {
+                                    return Redirect()->route('user.index')->with('success','User Deleted successfully!');                  
+                                }
+                else
+                    {
+                        return Redirect()->route('user.index')->with('error','Somthing is Wrong!');  
+                    }
 
-      }
+        }
 }
